@@ -51,7 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>-- http://www.macosxautomation.com/applescript/sbrt/sbrt-06.htmlon replace_chars(this_text, search_string, replacement_string)	set AppleScript's text item delimiters to the search_string	set the item_list to every text item of this_text	set AppleScript's text item delimiters to the replacement_string	set this_text to the item_list as string	set AppleScript's text item delimiters to ""	return this_textend replace_charstell application "Xcode"	set theLineNumbers to the last source document's selected paragraph range	set thePath to the last source document's path		set theRoot to do shell script "dirname '" &amp; thePath &amp; "'"	set theRepoURL to do shell script "cd '" &amp; theRoot &amp; "'; git remote get-url origin"	set theRepoRelativePath to do shell script "cd '" &amp; theRoot &amp; "'; cd $(git rev-parse --show-toplevel); git ls-files '" &amp; thePath &amp; "'"	set theHash to do shell script "cd '" &amp; theRoot &amp; "'; git rev-parse HEAD"		set theRepoURL to my replace_chars(theRepoURL, "git@github.com:", "https://github.com/")	set AppleScript's text item delimiters to ".git"	set theBlobURL to the front text item of theRepoURL &amp; "/blob/" &amp; theHash &amp; "/" &amp; theRepoRelativePath		set theAnchor to "L" &amp; the first item in theLineNumbers	if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then		set theAnchor to theAnchor &amp; "-" &amp; the last item in theLineNumbers	end if		tell application "System Events" to open location theBlobURL &amp; "#" &amp; theAnchorend tell</string>
+					<string>-- http://www.macosxautomation.com/applescript/sbrt/sbrt-06.htmlon replace_chars(this_text, search_string, replacement_string)	set AppleScript's text item delimiters to the search_string	set the item_list to every text item of this_text	set AppleScript's text item delimiters to the replacement_string	set this_text to the item_list as string	set AppleScript's text item delimiters to ""	return this_textend replace_charstell application "Xcode"	set theLineNumbers to the last source document's selected paragraph range	set thePath to the last source document's path		set theRoot to do shell script "dirname '" &amp; thePath &amp; "'"	set theRepoURL to do shell script "cd '" &amp; theRoot &amp; "'; git remote get-url origin"	set theRepoRelativePath to do shell script "cd '" &amp; theRoot &amp; "'; cd $(git rev-parse --show-toplevel); git ls-files '" &amp; thePath &amp; "'"	set theHash to do shell script "cd '" &amp; theRoot &amp; "'; git rev-parse HEAD"		set theRepoURL to my replace_chars(theRepoURL, "git@github.com:", "https://github.com/")	set AppleScript's text item delimiters to ".git"	set theBlobURL to the front text item of theRepoURL &amp; "/blob/" &amp; theHash &amp; "/" &amp; theRepoRelativePath		if theLineNumbers exists then		set theAnchor to "L" &amp; the first item in theLineNumbers		if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then			set theAnchor to theAnchor &amp; "-" &amp; the last item in theLineNumbers		end if		set theBlobURL to theBlobURL &amp; "#" &amp; theAnchor	end if		return theBlobURLend tell</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -67,6 +67,8 @@
 				</array>
 				<key>Class Name</key>
 				<string>RunScriptAction</string>
+				<key>IgnoresInput</key>
+				<false/>
 				<key>InputUUID</key>
 				<string>552CB11E-0303-4658-95E3-CAD27A9E0AB3</string>
 				<key>Keywords</key>
@@ -75,6 +77,8 @@
 				</array>
 				<key>OutputUUID</key>
 				<string>0DBDD6F8-3EF0-4DD7-A467-4827A248EF2D</string>
+				<key>ShowWhenRun</key>
+				<false/>
 				<key>UUID</key>
 				<string>28F6F329-9EE1-48F9-8AE6-05BA6AB36A89</string>
 				<key>UnlocalizedApplications</key>
@@ -102,21 +106,115 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>309.000000:316.000000</string>
+				<string>449.000000:316.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
 			<key>isViewVisible</key>
 			<true/>
 		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<false/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.url</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Safari</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict/>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.url</string>
+					</array>
+				</dict>
+				<key>AMRequiredResources</key>
+				<array/>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Display Webpages 2.action</string>
+				<key>ActionName</key>
+				<string>Hiển thị Trang web</string>
+				<key>ActionParameters</key>
+				<dict/>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.Display_Webpages</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<false/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryInternet</string>
+				</array>
+				<key>Class Name</key>
+				<string>Display_Webpages</string>
+				<key>InputUUID</key>
+				<string>6526A4E6-E6B5-41BB-970F-F3DCF907DA9E</string>
+				<key>Keywords</key>
+				<array>
+					<string>URL</string>
+					<string>Web</string>
+					<string>Hiển thị</string>
+					<string>Mở</string>
+					<string>Hiển thị</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>CF626803-FF12-4A00-90CF-F740CAB9BAEE</string>
+				<key>UUID</key>
+				<string>D115D304-509F-4AAB-8CE3-3B86AC8AFA80</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Safari</string>
+				</array>
+				<key>arguments</key>
+				<dict/>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
 	</array>
 	<key>connectors</key>
-	<dict/>
+	<dict>
+		<key>2DF9CD24-FE77-4637-9999-D6D8DDA4ED2B</key>
+		<dict>
+			<key>from</key>
+			<string>28F6F329-9EE1-48F9-8AE6-05BA6AB36A89 - 28F6F329-9EE1-48F9-8AE6-05BA6AB36A89</string>
+			<key>to</key>
+			<string>D115D304-509F-4AAB-8CE3-3B86AC8AFA80 - D115D304-509F-4AAB-8CE3-3B86AC8AFA80</string>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<array>
+		<dict>
+			<key>UUID</key>
+			<string>3B8BA533-4F4E-4343-A1E8-EC6876C7F0F2</string>
+			<key>identifier</key>
+			<string>com.apple.Automator.Variable.Storage</string>
+			<key>name</key>
+			<string>Line Numbers</string>
+		</dict>
+	</array>
 	<key>workflowMetaData</key>
 	<dict>
 		<key>serviceApplicationBundleID</key>
