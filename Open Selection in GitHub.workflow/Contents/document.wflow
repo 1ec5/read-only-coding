@@ -51,7 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>-- http://www.macosxautomation.com/applescript/sbrt/sbrt-06.htmlon replace_chars(this_text, search_string, replacement_string)	set AppleScript's text item delimiters to the search_string	set the item_list to every text item of this_text	set AppleScript's text item delimiters to the replacement_string	set this_text to the item_list as string	set AppleScript's text item delimiters to ""	return this_textend replace_charstell application "Xcode"	set theLineNumbers to the last source document's selected paragraph range	set thePath to the last source document's path		set theRoot to do shell script "dirname '" &amp; thePath &amp; "'"	set theRepoURL to do shell script "cd '" &amp; theRoot &amp; "'; git remote get-url origin"	set theRepoRelativePath to do shell script "cd '" &amp; theRoot &amp; "'; cd $(git rev-parse --show-toplevel); git ls-files '" &amp; thePath &amp; "'"	set theHash to do shell script "cd '" &amp; theRoot &amp; "'; git rev-parse HEAD"		set theRepoURL to my replace_chars(theRepoURL, "git@github.com:", "https://github.com/")	set AppleScript's text item delimiters to ".git"	set theBlobURL to the front text item of theRepoURL &amp; "/blob/" &amp; theHash &amp; "/" &amp; theRepoRelativePath		if theLineNumbers exists then		set theAnchor to "L" &amp; the first item in theLineNumbers		if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then			set theAnchor to theAnchor &amp; "-" &amp; the last item in theLineNumbers		end if		set theBlobURL to theBlobURL &amp; "#" &amp; theAnchor	end if		return theBlobURLend tell</string>
+					<string>on run {input, parameters}	tell application "Xcode"		set thePath to the last source document's path	end tell	return thePathend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -68,19 +68,19 @@
 				<key>Class Name</key>
 				<string>RunScriptAction</string>
 				<key>IgnoresInput</key>
-				<false/>
+				<true/>
 				<key>InputUUID</key>
-				<string>552CB11E-0303-4658-95E3-CAD27A9E0AB3</string>
+				<string>AC557A8F-278B-457F-9AEF-7142CA036058</string>
 				<key>Keywords</key>
 				<array>
 					<string>Chạy</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>0DBDD6F8-3EF0-4DD7-A467-4827A248EF2D</string>
-				<key>ShowWhenRun</key>
+				<string>69D62E0E-231C-4733-BA10-2BA61471F18E</string>
+				<key>StartAction</key>
 				<false/>
 				<key>UUID</key>
-				<string>28F6F329-9EE1-48F9-8AE6-05BA6AB36A89</string>
+				<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -106,10 +106,301 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
 				<string>449.000000:316.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.string</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>2.0.3</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<dict/>
+					<key>CheckedForUserDefaultShell</key>
+					<dict/>
+					<key>inputMethod</key>
+					<dict/>
+					<key>shell</key>
+					<dict/>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.string</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run Shell Script.action</string>
+				<key>ActionName</key>
+				<string>Chạy Tập lệnh Shell</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<string>cd $(dirname "$1")
+
+REPO_URL=$(git remote get-url origin)
+HASH=$(git rev-parse HEAD)
+
+cd $(git rev-parse --show-toplevel)
+REPO_RELATIVE_PATH=$(git ls-files "$1")
+
+REPO_URL=${REPO_URL/#git@github.com:/https://github.com/}
+REPO_URL=${REPO_URL%.git}
+echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
+					<key>CheckedForUserDefaultShell</key>
+					<true/>
+					<key>inputMethod</key>
+					<integer>1</integer>
+					<key>shell</key>
+					<string>/bin/bash</string>
+					<key>source</key>
+					<string></string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.RunShellScript</string>
+				<key>CFBundleVersion</key>
+				<string>2.0.3</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunShellScriptAction</string>
+				<key>IgnoresInput</key>
+				<false/>
+				<key>InputUUID</key>
+				<string>700441D6-565F-4449-9B25-6566FF1FC7E9</string>
+				<key>Keywords</key>
+				<array>
+					<string>Shell</string>
+					<string>Tập lệnh</string>
+					<string>Lệnh</string>
+					<string>Chạy</string>
+					<string>Unix</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>082A8C39-EBE9-41F0-8FD9-8B9EDD55030D</string>
+				<key>StartAction</key>
+				<false/>
+				<key>UUID</key>
+				<string>C31656BF-7650-423E-8852-CDA95D620388</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>inputMethod</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+					<key>2</key>
+					<dict>
+						<key>default value</key>
+						<false/>
+						<key>name</key>
+						<string>CheckedForUserDefaultShell</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>2</string>
+					</dict>
+					<key>3</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>COMMAND_STRING</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>3</string>
+					</dict>
+					<key>4</key>
+					<dict>
+						<key>default value</key>
+						<string>/bin/sh</string>
+						<key>name</key>
+						<string>shell</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>4</string>
+					</dict>
+				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>449.000000:499.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/vi.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>Chạy AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>on run {input, parameters}		set theURL to the first item in the input		-- Append the selected line numbers to the URL.	tell application "Xcode"		set theLineNumbers to the last source document's selected paragraph range		if theLineNumbers exists then			set theAnchor to "L" &amp; the first item in theLineNumbers			if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then				set theAnchor to theAnchor &amp; "-" &amp; the last item in theLineNumbers			end if			set theURL to theURL &amp; "#" &amp; theAnchor		end if	end tell		return theURLend run</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>3138FA10-D029-4B25-8B4D-AE7982FAAD6D</string>
+				<key>Keywords</key>
+				<array>
+					<string>Chạy</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>DBCC4FD9-6C24-43F3-81C9-7A8BF588C8C6</string>
+				<key>UUID</key>
+				<string>6575964A-DDC4-43D2-8018-51DC77844718</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>449.000000:745.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -196,25 +487,28 @@ end run</string>
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>2DF9CD24-FE77-4637-9999-D6D8DDA4ED2B</key>
+		<key>4EEF3138-91BF-4083-B389-D813E9E1AA01</key>
 		<dict>
 			<key>from</key>
-			<string>28F6F329-9EE1-48F9-8AE6-05BA6AB36A89 - 28F6F329-9EE1-48F9-8AE6-05BA6AB36A89</string>
+			<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF - 97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
+			<key>to</key>
+			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
+		</dict>
+		<key>A6904E78-C304-4E7D-B433-4A2EF277FA46</key>
+		<dict>
+			<key>from</key>
+			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
+			<key>to</key>
+			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
+		</dict>
+		<key>C27CA0D3-F9FC-4529-8984-09BB25A6D863</key>
+		<dict>
+			<key>from</key>
+			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
 			<key>to</key>
 			<string>D115D304-509F-4AAB-8CE3-3B86AC8AFA80 - D115D304-509F-4AAB-8CE3-3B86AC8AFA80</string>
 		</dict>
 	</dict>
-	<key>variables</key>
-	<array>
-		<dict>
-			<key>UUID</key>
-			<string>3B8BA533-4F4E-4343-A1E8-EC6876C7F0F2</string>
-			<key>identifier</key>
-			<string>com.apple.Automator.Variable.Storage</string>
-			<key>name</key>
-			<string>Line Numbers</string>
-		</dict>
-	</array>
 	<key>workflowMetaData</key>
 	<dict>
 		<key>serviceApplicationBundleID</key>
