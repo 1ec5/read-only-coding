@@ -51,7 +51,12 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	tell application "Xcode"		set thePath to the last source document's path	end tell	return thePathend run</string>
+					<string>on run {input, parameters}
+	tell application "Xcode"
+		set thePath to the last source document's path
+	end tell
+	return thePath
+end run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -344,7 +349,24 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}		set theURL to the first item in the input		-- Append the selected line numbers to the URL.	tell application "Xcode"		set theLineNumbers to the last source document's selected paragraph range		if theLineNumbers exists then			set theAnchor to "L" &amp; the first item in theLineNumbers			if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then				set theAnchor to theAnchor &amp; "-" &amp; the last item in theLineNumbers			end if			set theURL to theURL &amp; "#" &amp; theAnchor		end if	end tell		return theURLend run</string>
+					<string>on run {input, parameters}
+	
+	set theURL to the first item in the input
+	
+	-- Append the selected line numbers to the URL.
+	tell application "Xcode"
+		set theLineNumbers to the last source document's selected paragraph range
+		if theLineNumbers exists then
+			set theAnchor to "L" &amp; the first item in theLineNumbers
+			if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then
+				set theAnchor to theAnchor &amp; "-L" &amp; the last item in theLineNumbers
+			end if
+			set theURL to theURL &amp; "#" &amp; theAnchor
+		end if
+	end tell
+	
+	return theURL
+end run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
