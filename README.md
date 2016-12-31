@@ -9,7 +9,10 @@ If a Git-managed source code file is open in Xcode, this service opens a checked
 
 ## Installation
 
-To install these services, [download a ZIP of this repository](https://github.com/1ec5/read-only-coding/archive/master.zip), then drop the .workflow bundles into ~/Library/Services/.
+To install these services:
+
+1. [Download a ZIP of this repository](https://github.com/1ec5/read-only-coding/archive/master.zip).
+2. Double-click each .workflow bundle and click Install. (Or drop each .workflow bundle into ~/Library/Services/.)
 
 To assign keyboard shortcuts to these services:
 
