@@ -48,14 +48,19 @@
 				<string>/System/Library/Automator/Run AppleScript.action</string>
 				<key>ActionName</key>
 				<string>Chạy AppleScript</string>
+				<key>ActionNameComment</key>
+				<string>Ask Xcode for its Selection</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
 					<string>on run {input, parameters}
 	tell application "Xcode"
-		set thePath to the first source document's path
+		set theWindow to the first window
+		set theDocument to the first source document whose name is theWindow's name
+		set thePath to theDocument's path
+		set theLineNumbers to theDocument's selected paragraph range
 	end tell
-	return thePath
+	return {thePath, theLineNumbers}
 end run</string>
 				</dict>
 				<key>BundleIdentifier</key>
@@ -82,6 +87,8 @@ end run</string>
 				</array>
 				<key>OutputUUID</key>
 				<string>69D62E0E-231C-4733-BA10-2BA61471F18E</string>
+				<key>StartAction</key>
+				<false/>
 				<key>UUID</key>
 				<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
 				<key>UnlocalizedApplications</key>
@@ -113,6 +120,222 @@ end run</string>
 				<true/>
 				<key>location</key>
 				<string>449.000000:316.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<false/>
+					<key>Types</key>
+					<array>
+						<string>*</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>v.1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>variableUUID</key>
+					<dict>
+						<key>isPathPopUp</key>
+						<false/>
+						<key>selectedVariableUUID</key>
+						<string>CD2CD581-8868-47B8-AFE0-68745CF7EEEE</string>
+					</dict>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>*</string>
+					</array>
+				</dict>
+				<key>AMRequiredResources</key>
+				<array/>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Set Value of Variable.action</string>
+				<key>ActionName</key>
+				<string>Đặt Giá trị của Biến</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>variableUUID</key>
+					<string>CD2CD581-8868-47B8-AFE0-68745CF7EEEE</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.Set_Value_of_Variable</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>Set_Value_of_Variable</string>
+				<key>InputUUID</key>
+				<string>9394469E-43B9-415A-9B21-88FA97DA8996</string>
+				<key>Keywords</key>
+				<array>
+					<string>biến</string>
+					<string>liên kết</string>
+					<string>đầu vào</string>
+					<string>đầu ra</string>
+					<string>lưu trữ</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>5E544F8E-9B09-4378-BE54-F9727178F651</string>
+				<key>UUID</key>
+				<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>variableUUID</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>449.000000:422.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Set Value of Variable.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>Chạy AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>on run {input, parameters}
+	return input's first item
+end run</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>44D9C3CD-6D8C-41D2-8FB9-20C20CBF3AB2</string>
+				<key>Keywords</key>
+				<array>
+					<string>Chạy</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>DA77A09A-E1B9-4D74-99F0-036E52D17309</string>
+				<key>UUID</key>
+				<string>3EA3061E-572F-49D0-889E-55802580A183</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>449.000000:668.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -165,6 +388,8 @@ end run</string>
 				<string>/System/Library/Automator/Run Shell Script.action</string>
 				<key>ActionName</key>
 				<string>Chạy Tập lệnh Shell</string>
+				<key>ActionNameComment</key>
+				<string>Ask Git for the URL</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
@@ -216,6 +441,8 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				</array>
 				<key>OutputUUID</key>
 				<string>082A8C39-EBE9-41F0-8FD9-8B9EDD55030D</string>
+				<key>StartAction</key>
+				<false/>
 				<key>UUID</key>
 				<string>C31656BF-7650-423E-8852-CDA95D620388</string>
 				<key>UnlocalizedApplications</key>
@@ -293,9 +520,121 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:499.000000</string>
+				<string>449.000000:851.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/vi.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>*</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>v.1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>variableUUID</key>
+					<dict>
+						<key>isPathPopUp</key>
+						<false/>
+						<key>selectedVariableUUID</key>
+						<string>CD2CD581-8868-47B8-AFE0-68745CF7EEEE</string>
+					</dict>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMRequiredResources</key>
+				<array/>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Get Value of Variable.action</string>
+				<key>ActionName</key>
+				<string>Lấy Giá trị của Biến</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>variableUUID</key>
+					<string>CD2CD581-8868-47B8-AFE0-68745CF7EEEE</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.Get_Value_of_Variable</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>Get_Value_of_Variable</string>
+				<key>InputUUID</key>
+				<string>F2708B24-371E-44F7-9798-FA0946A230F4</string>
+				<key>Keywords</key>
+				<array>
+					<string>biến</string>
+					<string>liên kết</string>
+					<string>đầu vào</string>
+					<string>đầu ra</string>
+					<string>lưu trữ</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>EDA248F3-17A6-497C-A46B-4FACFA5EEECC</string>
+				<key>UUID</key>
+				<string>41372605-361C-4CCF-B188-7852A2988BD3</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>variableUUID</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>449.000000:954.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Get Value of Variable.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
 			<key>isViewVisible</key>
 			<true/>
@@ -338,16 +677,18 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				<string>/System/Library/Automator/Run AppleScript.action</string>
 				<key>ActionName</key>
 				<string>Chạy AppleScript</string>
+				<key>ActionNameComment</key>
+				<string>Append Line Numbers to the URL</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
 					<string>on run {input, parameters}
 	
-	set theURL to the first item in the input
+	set theURL to the input's first item
+	set theLineNumbers to the input's third item
 	
 	-- Append the selected line numbers to the URL.
 	tell application "Xcode"
-		set theLineNumbers to the first source document's selected paragraph range
 		if theLineNumbers exists then
 			set theAnchor to "L" &amp; the first item in theLineNumbers
 			if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then
@@ -374,6 +715,8 @@ end run</string>
 				</array>
 				<key>Class Name</key>
 				<string>RunScriptAction</string>
+				<key>IgnoresInput</key>
+				<false/>
 				<key>InputUUID</key>
 				<string>3138FA10-D029-4B25-8B4D-AE7982FAAD6D</string>
 				<key>Keywords</key>
@@ -412,7 +755,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:745.000000</string>
+				<string>449.000000:1200.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -497,34 +840,74 @@ end run</string>
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>1CD21E49-C18B-4A12-9422-9D2E2D59DF33</key>
-		<dict>
-			<key>from</key>
-			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
-			<key>to</key>
-			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
-		</dict>
-		<key>7DF7BFF7-594E-4B02-A8BD-EB4E36593C33</key>
+		<key>2F5C66BA-C253-4B8F-A607-41370E5DAE61</key>
 		<dict>
 			<key>from</key>
 			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
 			<key>to</key>
 			<string>D115D304-509F-4AAB-8CE3-3B86AC8AFA80 - D115D304-509F-4AAB-8CE3-3B86AC8AFA80</string>
 		</dict>
-		<key>EB89C413-F58C-4B1E-9AFA-41D57738B8C3</key>
+		<key>87A7EADB-D8A8-44FB-8E37-ED638BEE183B</key>
 		<dict>
 			<key>from</key>
 			<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF - 97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
 			<key>to</key>
+			<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A - 2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
+		</dict>
+		<key>959557CD-F5D8-4C7B-95D2-E800F96A5C4D</key>
+		<dict>
+			<key>from</key>
+			<string>41372605-361C-4CCF-B188-7852A2988BD3 - 41372605-361C-4CCF-B188-7852A2988BD3</string>
+			<key>to</key>
+			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
+		</dict>
+		<key>971459BA-3806-4A34-A5F1-74A7F673803E</key>
+		<dict>
+			<key>from</key>
+			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
+			<key>to</key>
+			<string>41372605-361C-4CCF-B188-7852A2988BD3 - 41372605-361C-4CCF-B188-7852A2988BD3</string>
+		</dict>
+		<key>B2B18CAF-7EB6-47C1-9D4E-BC5B4AC788D8</key>
+		<dict>
+			<key>from</key>
+			<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A - 2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
+			<key>to</key>
+			<string>3EA3061E-572F-49D0-889E-55802580A183 - 3EA3061E-572F-49D0-889E-55802580A183</string>
+		</dict>
+		<key>C8E021A0-41D7-442C-9875-BEF1B534580A</key>
+		<dict>
+			<key>from</key>
+			<string>3EA3061E-572F-49D0-889E-55802580A183 - 3EA3061E-572F-49D0-889E-55802580A183</string>
+			<key>to</key>
 			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<array>
+		<dict>
+			<key>UUID</key>
+			<string>CD2CD581-8868-47B8-AFE0-68745CF7EEEE</string>
+			<key>identifier</key>
+			<string>com.apple.Automator.Variable.Storage</string>
+			<key>name</key>
+			<string>thePathAndLineNumbers</string>
+		</dict>
+		<dict>
+			<key>UUID</key>
+			<string>719201B4-C1CB-4C96-9618-761A6A73F9CF</string>
+			<key>identifier</key>
+			<string>com.apple.Automator.Variable.Storage</string>
+			<key>name</key>
+			<string>theURLs</string>
+		</dict>
+	</array>
 	<key>workflowMetaData</key>
 	<dict>
 		<key>serviceApplicationBundleID</key>
-		<string></string>
+		<string>com.apple.dt.Xcode</string>
 		<key>serviceApplicationPath</key>
-		<string></string>
+		<string>/Applications/Xcode.app</string>
 		<key>serviceInputTypeIdentifier</key>
 		<string>com.apple.Automator.nothing</string>
 		<key>serviceOutputTypeIdentifier</key>
