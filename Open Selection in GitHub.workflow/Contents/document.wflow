@@ -56,9 +56,22 @@
 					<string>on run {input, parameters}
 	tell application "Xcode"
 		set theWindow to the first window
-		set theDocument to the first source document whose name is theWindow's name
-		set thePath to theDocument's path
-		set theLineNumbers to theDocument's selected paragraph range
+		set theDocuments to every source document whose name is theWindow's name
+		if the number of items in theDocuments &gt; 1 then
+			set thePaths to the path of every source document whose name is theWindow's name
+			set theSelection to choose from list thePaths ¬
+				with title ¬
+				"Open Selection in GitHub" with prompt ("Which " &amp; theWindow's name &amp; "?") ¬
+				default items the first item in thePaths ¬
+				OK button name "Open"
+			set thePath to the first item in theSelection
+			set theDocument to the first source document whose path is thePath
+			set theLineNumbers to the selected paragraph range of (the first source document whose path is thePath)
+		else
+			set theDocument to the first item in theDocuments
+			set thePath to theDocument's path
+			set theLineNumbers to theDocument's selected paragraph range
+		end if
 	end tell
 	return {thePath, theLineNumbers}
 end run</string>
@@ -87,8 +100,6 @@ end run</string>
 				</array>
 				<key>OutputUUID</key>
 				<string>69D62E0E-231C-4733-BA10-2BA61471F18E</string>
-				<key>StartAction</key>
-				<false/>
 				<key>UUID</key>
 				<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
 				<key>UnlocalizedApplications</key>
@@ -181,7 +192,7 @@ end run</string>
 				<key>CFBundleVersion</key>
 				<string>1.0.2</string>
 				<key>CanShowSelectedItemsWhenRun</key>
-				<false/>
+				<true/>
 				<key>CanShowWhenRun</key>
 				<true/>
 				<key>Category</key>
@@ -224,8 +235,6 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
@@ -330,8 +339,6 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
@@ -441,8 +448,6 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				</array>
 				<key>OutputUUID</key>
 				<string>082A8C39-EBE9-41F0-8FD9-8B9EDD55030D</string>
-				<key>StartAction</key>
-				<false/>
 				<key>UUID</key>
 				<string>C31656BF-7650-423E-8852-CDA95D620388</string>
 				<key>UnlocalizedApplications</key>
@@ -627,8 +632,6 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
@@ -840,42 +843,42 @@ end run</string>
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>2F5C66BA-C253-4B8F-A607-41370E5DAE61</key>
-		<dict>
-			<key>from</key>
-			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
-			<key>to</key>
-			<string>D115D304-509F-4AAB-8CE3-3B86AC8AFA80 - D115D304-509F-4AAB-8CE3-3B86AC8AFA80</string>
-		</dict>
-		<key>87A7EADB-D8A8-44FB-8E37-ED638BEE183B</key>
-		<dict>
-			<key>from</key>
-			<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF - 97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
-			<key>to</key>
-			<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A - 2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
-		</dict>
-		<key>959557CD-F5D8-4C7B-95D2-E800F96A5C4D</key>
-		<dict>
-			<key>from</key>
-			<string>41372605-361C-4CCF-B188-7852A2988BD3 - 41372605-361C-4CCF-B188-7852A2988BD3</string>
-			<key>to</key>
-			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
-		</dict>
-		<key>971459BA-3806-4A34-A5F1-74A7F673803E</key>
+		<key>39DECD97-5B60-4DF9-8037-501975E089B9</key>
 		<dict>
 			<key>from</key>
 			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
 			<key>to</key>
 			<string>41372605-361C-4CCF-B188-7852A2988BD3 - 41372605-361C-4CCF-B188-7852A2988BD3</string>
 		</dict>
-		<key>B2B18CAF-7EB6-47C1-9D4E-BC5B4AC788D8</key>
+		<key>5E1ED706-7D5E-473F-A495-635F323A67A1</key>
 		<dict>
 			<key>from</key>
 			<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A - 2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
 			<key>to</key>
 			<string>3EA3061E-572F-49D0-889E-55802580A183 - 3EA3061E-572F-49D0-889E-55802580A183</string>
 		</dict>
-		<key>C8E021A0-41D7-442C-9875-BEF1B534580A</key>
+		<key>7655AA8D-264D-43DD-A26A-DC16E22478D8</key>
+		<dict>
+			<key>from</key>
+			<string>41372605-361C-4CCF-B188-7852A2988BD3 - 41372605-361C-4CCF-B188-7852A2988BD3</string>
+			<key>to</key>
+			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
+		</dict>
+		<key>8320EC95-DFF3-4845-B0F4-0DB5781A94B1</key>
+		<dict>
+			<key>from</key>
+			<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF - 97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
+			<key>to</key>
+			<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A - 2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
+		</dict>
+		<key>D9777D04-0BEB-467D-9B27-02EDF985BFFB</key>
+		<dict>
+			<key>from</key>
+			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
+			<key>to</key>
+			<string>D115D304-509F-4AAB-8CE3-3B86AC8AFA80 - D115D304-509F-4AAB-8CE3-3B86AC8AFA80</string>
+		</dict>
+		<key>E72B951E-A0C9-47DF-B3CD-A1A8290EEF2E</key>
 		<dict>
 			<key>from</key>
 			<string>3EA3061E-572F-49D0-889E-55802580A183 - 3EA3061E-572F-49D0-889E-55802580A183</string>
