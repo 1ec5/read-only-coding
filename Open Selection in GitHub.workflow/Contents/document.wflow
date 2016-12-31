@@ -53,7 +53,7 @@
 					<key>source</key>
 					<string>on run {input, parameters}
 	tell application "Xcode"
-		set thePath to the last source document's path
+		set thePath to the first source document's path
 	end tell
 	return thePath
 end run</string>
@@ -82,8 +82,6 @@ end run</string>
 				</array>
 				<key>OutputUUID</key>
 				<string>69D62E0E-231C-4733-BA10-2BA61471F18E</string>
-				<key>StartAction</key>
-				<false/>
 				<key>UUID</key>
 				<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
 				<key>UnlocalizedApplications</key>
@@ -111,8 +109,6 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
@@ -220,8 +216,6 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				</array>
 				<key>OutputUUID</key>
 				<string>082A8C39-EBE9-41F0-8FD9-8B9EDD55030D</string>
-				<key>StartAction</key>
-				<false/>
 				<key>UUID</key>
 				<string>C31656BF-7650-423E-8852-CDA95D620388</string>
 				<key>UnlocalizedApplications</key>
@@ -296,8 +290,6 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 						<string>4</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
@@ -417,8 +409,6 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
@@ -502,33 +492,31 @@ end run</string>
 				</array>
 				<key>arguments</key>
 				<dict/>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 			</dict>
 		</dict>
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>4EEF3138-91BF-4083-B389-D813E9E1AA01</key>
-		<dict>
-			<key>from</key>
-			<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF - 97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
-			<key>to</key>
-			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
-		</dict>
-		<key>A6904E78-C304-4E7D-B433-4A2EF277FA46</key>
-		<dict>
-			<key>from</key>
-			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
-			<key>to</key>
-			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
-		</dict>
-		<key>C27CA0D3-F9FC-4529-8984-09BB25A6D863</key>
+		<key>028A4E8B-5163-4168-B52E-35CCF5C131F3</key>
 		<dict>
 			<key>from</key>
 			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
 			<key>to</key>
 			<string>D115D304-509F-4AAB-8CE3-3B86AC8AFA80 - D115D304-509F-4AAB-8CE3-3B86AC8AFA80</string>
+		</dict>
+		<key>04A784B6-B00A-45B8-B9A0-CB60204E6793</key>
+		<dict>
+			<key>from</key>
+			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
+			<key>to</key>
+			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
+		</dict>
+		<key>D29AF0BB-456E-4D63-88A5-D076DF4CE81B</key>
+		<dict>
+			<key>from</key>
+			<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF - 97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
+			<key>to</key>
+			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
 		</dict>
 	</dict>
 	<key>workflowMetaData</key>
