@@ -5,7 +5,7 @@ Automator services to make coding in Xcode easier. Written mostly in AppleScript
 
 ### Open Selection in GitHub
 
-If a Git-managed source code file is open in Xcode, this service opens a checked-in copy of the file on GitHub in your default Web browser, with the selected line or lines highlighted.
+If a Git-managed source code file is open in Xcode, this service opens a checked-in copy of the file on GitHub in your default Web browser, with the selected line or lines highlighted. The clone containing the file must have a remote named `origin` that points to GitHub via HTTPS.
 
 ## Installation
 
