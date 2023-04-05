@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>509</string>
+	<string>444.7</string>
 	<key>AMApplicationVersion</key>
-	<string>2.10</string>
+	<string>2.8</string>
 	<key>AMDocumentVersion</key>
 	<string>2</string>
 	<key>actions</key>
@@ -53,28 +53,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}
-	tell application "Xcode"
-		set theWindow to the first window
-		set theDocuments to every source document whose theWindow's name ends with name
-		if the number of items in theDocuments &gt; 1 then
-			set thePaths to the path of every source document whose name is theWindow's name
-			set theSelection to choose from list thePaths ¬
-				with title ¬
-				"Open Selection in GitHub" with prompt ("Which " &amp; theWindow's name &amp; "?") ¬
-				default items the first item in thePaths ¬
-				OK button name "Open"
-			set thePath to the first item in theSelection
-			set theDocument to the first source document whose path is thePath
-			set theLineNumbers to the selected paragraph range of (the first source document whose path is thePath)
-		else
-			set theDocument to the first item in theDocuments
-			set thePath to theDocument's path
-			set theLineNumbers to theDocument's selected paragraph range
-		end if
-	end tell
-	return {thePath, theLineNumbers}
-end run</string>
+					<string>on run {input, parameters}	tell application "Xcode"		set theWindow to the first window		set theDocuments to every source document whose theWindow's name ends with name		if the number of items in theDocuments &gt; 1 then			set thePaths to the path of every source document whose name is theWindow's name			set theSelection to choose from list thePaths ¬				with title ¬				"Open Selection in GitHub" with prompt ("Which " &amp; theWindow's name &amp; "?") ¬				default items the first item in thePaths ¬				OK button name "Open"			set thePath to the first item in theSelection			set theDocument to the first source document whose path is thePath			set theLineNumbers to the selected paragraph range of (the first source document whose path is thePath)		else			set theDocument to the first item in theDocuments			set thePath to theDocument's path			set theLineNumbers to theDocument's selected paragraph range		end if	end tell	return {thePath, theLineNumbers}end run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -130,7 +109,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:368.000000</string>
+				<string>499.500000:316.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -238,7 +217,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:471.000000</string>
+				<string>499.500000:422.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Set Value of Variable.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -286,9 +265,7 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}
-	return input's first item
-end run</string>
+					<string>on run {input, parameters}	return input's first itemend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -342,7 +319,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:716.000000</string>
+				<string>499.500000:668.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -400,7 +377,7 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>cd $(dirname "$1")
+					<string>cd "$(dirname "$1")"
 
 REPO_URL=$(git remote get-url origin)
 HASH=$(git rev-parse HEAD)
@@ -410,7 +387,7 @@ REPO_RELATIVE_PATH=$(git ls-files "$1")
 
 REPO_URL=${REPO_URL/#git@github.com:/https://github.com/}
 REPO_URL=${REPO_URL%.git}
-echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
+echo "$REPO_URL/blob/$HASH/${REPO_RELATIVE_PATH// /%20}"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -472,9 +449,9 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 					<key>1</key>
 					<dict>
 						<key>default value</key>
-						<false/>
+						<string></string>
 						<key>name</key>
-						<string>CheckedForUserDefaultShell</string>
+						<string>source</string>
 						<key>required</key>
 						<string>0</string>
 						<key>type</key>
@@ -485,9 +462,9 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 					<key>2</key>
 					<dict>
 						<key>default value</key>
-						<string></string>
+						<false/>
 						<key>name</key>
-						<string>source</string>
+						<string>CheckedForUserDefaultShell</string>
 						<key>required</key>
 						<string>0</string>
 						<key>type</key>
@@ -525,9 +502,9 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:898.000000</string>
+				<string>499.500000:851.000000</string>
 				<key>nibPath</key>
-				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
+				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/vi.lproj/main.nib</string>
 			</dict>
 			<key>isViewVisible</key>
 			<true/>
@@ -566,9 +543,11 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				<dict>
 					<key>Container</key>
 					<string>List</string>
+					<key>Optional</key>
+					<true/>
 					<key>Types</key>
 					<array>
-						<string>*</string>
+						<string>com.apple.applescript.object</string>
 					</array>
 				</dict>
 				<key>AMRequiredResources</key>
@@ -633,7 +612,7 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:1000.000000</string>
+				<string>499.500000:954.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Get Value of Variable.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -683,24 +662,7 @@ echo "$REPO_URL/blob/$HASH/$REPO_RELATIVE_PATH"</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}
-	
-	set theURL to the input's first item
-	set theLineNumbers to the input's third item
-	
-	-- Append the selected line numbers to the URL.
-	tell application "Xcode"
-		if theLineNumbers exists then
-			set theAnchor to "L" &amp; the first item in theLineNumbers
-			if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then
-				set theAnchor to theAnchor &amp; "-L" &amp; the last item in theLineNumbers
-			end if
-			set theURL to theURL &amp; "#" &amp; theAnchor
-		end if
-	end tell
-	
-	return theURL
-end run</string>
+					<string>on run {input, parameters}		set theURL to the input's first item	set theLineNumbers to the input's third item		-- Append the selected line numbers to the URL.	tell application "Xcode"		if theLineNumbers exists then			set theAnchor to "L" &amp; the first item in theLineNumbers			if (count of theLineNumbers) &gt; 1 and the first item in theLineNumbers ≠ the last item in theLineNumbers then				set theAnchor to theAnchor &amp; "-L" &amp; the last item in theLineNumbers			end if			set theURL to theURL &amp; "#" &amp; theAnchor		end if	end tell		return theURLend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -756,7 +718,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>449.000000:1245.000000</string>
+				<string>499.500000:1200.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -847,47 +809,47 @@ end run</string>
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>75D8AAC9-0F5A-4741-8364-8C324911CF5C</key>
+		<key>287264FB-483E-41BC-99E1-DA761F2BEE41</key>
 		<dict>
 			<key>from</key>
 			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
 			<key>to</key>
 			<string>D115D304-509F-4AAB-8CE3-3B86AC8AFA80 - D115D304-509F-4AAB-8CE3-3B86AC8AFA80</string>
 		</dict>
-		<key>7BE5ECAE-C5EE-4EED-B7FC-8C3BA3CE56D5</key>
+		<key>3559B0E0-1200-48EC-86A3-2658161C1F03</key>
 		<dict>
 			<key>from</key>
-			<string>41372605-361C-4CCF-B188-7852A2988BD3 - 41372605-361C-4CCF-B188-7852A2988BD3</string>
+			<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A - 2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
 			<key>to</key>
-			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
-		</dict>
-		<key>97A326A0-51A6-4B8A-854B-07D5889E5B6A</key>
-		<dict>
-			<key>from</key>
 			<string>3EA3061E-572F-49D0-889E-55802580A183 - 3EA3061E-572F-49D0-889E-55802580A183</string>
-			<key>to</key>
-			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
 		</dict>
-		<key>B9B7137C-D071-45FC-8B37-60AF23DA6E19</key>
+		<key>808A0348-3DE5-4D09-9EFC-0C73F128040E</key>
 		<dict>
 			<key>from</key>
 			<string>97D93A0B-4DA4-4639-A530-395BA4D7E1EF - 97D93A0B-4DA4-4639-A530-395BA4D7E1EF</string>
 			<key>to</key>
 			<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A - 2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
 		</dict>
-		<key>C97CB64F-6D39-4518-840B-CB256E264990</key>
+		<key>87283C64-9F7B-4DBA-B29B-3E85D3086937</key>
 		<dict>
 			<key>from</key>
-			<string>2278F377-07C2-4DB9-BE3E-66D3F1CB177A - 2278F377-07C2-4DB9-BE3E-66D3F1CB177A</string>
+			<string>41372605-361C-4CCF-B188-7852A2988BD3 - 41372605-361C-4CCF-B188-7852A2988BD3</string>
 			<key>to</key>
-			<string>3EA3061E-572F-49D0-889E-55802580A183 - 3EA3061E-572F-49D0-889E-55802580A183</string>
+			<string>6575964A-DDC4-43D2-8018-51DC77844718 - 6575964A-DDC4-43D2-8018-51DC77844718</string>
 		</dict>
-		<key>DDE9132C-5CEE-4E1D-98D5-15CA0B31AB5F</key>
+		<key>C98F249C-F546-4CF0-BB15-53C43064FC18</key>
 		<dict>
 			<key>from</key>
 			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
 			<key>to</key>
 			<string>41372605-361C-4CCF-B188-7852A2988BD3 - 41372605-361C-4CCF-B188-7852A2988BD3</string>
+		</dict>
+		<key>E49BA0F1-6834-4FBA-BFC4-CD87004F3E1E</key>
+		<dict>
+			<key>from</key>
+			<string>3EA3061E-572F-49D0-889E-55802580A183 - 3EA3061E-572F-49D0-889E-55802580A183</string>
+			<key>to</key>
+			<string>C31656BF-7650-423E-8852-CDA95D620388 - C31656BF-7650-423E-8852-CDA95D620388</string>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -911,27 +873,6 @@ end run</string>
 	</array>
 	<key>workflowMetaData</key>
 	<dict>
-		<key>applicationBundleID</key>
-		<string>com.apple.dt.Xcode</string>
-		<key>applicationBundleIDsByPath</key>
-		<dict>
-			<key>/Applications/Xcode.app</key>
-			<string>com.apple.dt.Xcode</string>
-		</dict>
-		<key>applicationPath</key>
-		<string>/Applications/Xcode.app</string>
-		<key>applicationPaths</key>
-		<array>
-			<string>/Applications/Xcode.app</string>
-		</array>
-		<key>inputTypeIdentifier</key>
-		<string>com.apple.Automator.nothing</string>
-		<key>outputTypeIdentifier</key>
-		<string>com.apple.Automator.nothing</string>
-		<key>presentationMode</key>
-		<integer>11</integer>
-		<key>processesInput</key>
-		<integer>0</integer>
 		<key>serviceApplicationBundleID</key>
 		<string>com.apple.dt.Xcode</string>
 		<key>serviceApplicationPath</key>
@@ -942,13 +883,8 @@ end run</string>
 		<string>com.apple.Automator.nothing</string>
 		<key>serviceProcessesInput</key>
 		<integer>0</integer>
-		<key>systemImageName</key>
-		<string>NSActionTemplate</string>
-		<key>useAutomaticInputType</key>
-		<integer>0</integer>
 		<key>workflowTypeIdentifier</key>
 		<string>com.apple.Automator.servicesMenu</string>
 	</dict>
 </dict>
 </plist>
-
